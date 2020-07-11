@@ -22,6 +22,7 @@ public class ReadFile {
     private File file;
     private String s = "-1";
     private String[][] R8_0_27_Tables;
+    
     private int rowNumber = -1;
     private int signNumber = -1;
     
