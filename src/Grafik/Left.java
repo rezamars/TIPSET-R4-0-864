@@ -28,11 +28,16 @@ import javafx.stage.Screen;
 //the Left-object of the borderpane
 public class Left extends VBox{
     
-    private Label headingLabel = new Label("Mitt system, (5 MG)");
+    private Label headingLabel1 = new Label("Mitt system:");
+    private Label headingLabel2 = new Label("(4 Hel-RG, 1 Hel-MG, 5 Halv-MG)");
     private Label[] rowNumberlabelArray = new Label[13];
     private Label[] MGArray = new Label[13];
-    private ImageView[] imageViewArray = new ImageView[13];
-    private Label[] arrayLabel1X2 = new Label[13];
+    private ImageView[] MGimageViewArray = new ImageView[13];
+    
+    private ImageView[] userRowimageViewArray = new ImageView[39];
+    private Label[] userRowArray = new Label[39];
+    private Image imageBlank;
+    private String imageBlankPath = "blank.jpg";
     
     private Image MGimage1;
     private String MGimage1Path = "MG-ej-klickad.jpg";
@@ -50,26 +55,32 @@ public class Left extends VBox{
     
     public Left(){
         
-        this.setPadding(new Insets(10, 10, 10, 100));  
+        this.setPadding(new Insets(10, 10, 10, 25));  
         this.setSpacing(1);
+        this.setAlignment(Pos.TOP_CENTER);
         
         Font headingFont ;
         headingFont = Font.font("Arial", FontWeight.BOLD, 20);
         
-        headingLabel.setFont(headingFont);
-        headingLabel.setTextFill(Color.BLUE);
+        headingLabel1.setFont(headingFont);
+        headingLabel1.setTextFill(Color.BLUE);
+        this.getChildren().add(headingLabel1);
         
-        this.getChildren().add(headingLabel);
+        headingLabel2.setFont(headingFont);
+        headingLabel2.setTextFill(Color.BLUE);
+        this.getChildren().add(headingLabel2);
         
         //a HBox for filling up space
         spaceHbox = new HBox();
         spaceHbox.setPadding(new Insets(10, 10, 10, 100));
         this.getChildren().add(spaceHbox);
         
+        loadLabelImages();
+        
         //creating instances of HBox-array and setting properties
         for(int z = 0 ; z < hboxLabelArray.length ; z++){
             hboxLabelArray[z] = new HBox();
-            hboxLabelArray[z].setSpacing(25);
+            hboxLabelArray[z].setSpacing(10);
             hboxLabelArray[z].setFillHeight(true); 
             hboxLabelArray[z].autosize();
             hboxLabelArray[z].setAlignment(Pos.CENTER);
@@ -111,6 +122,8 @@ public class Left extends VBox{
             return;
         }
         
+        
+        
         //get screenresolution to set procentage of screen later
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         double width = primaryScreenBounds.getWidth();
@@ -126,32 +139,36 @@ public class Left extends VBox{
         
         //setting properties of image-views and setting the images to the grafics of the MGArray
         for(int w = 0 ; w < MGArray.length ; w++){
-            imageViewArray[w] = new ImageView(MGimage1);
-            imageViewArray[w].setFitHeight(height/25);
-            imageViewArray[w].setFitWidth(width/55);
+            MGimageViewArray[w] = new ImageView(MGimage1);
+            MGimageViewArray[w].setFitHeight(height/25);
+            MGimageViewArray[w].setFitWidth(width/55);
             
             MGArray[w] = new Label();
-            MGArray[w].setGraphic(imageViewArray[w]);
+            MGArray[w].setGraphic(MGimageViewArray[w]);
+            
+        }
+        
+        //settting properties of image-array
+        for(int w = 0 ; w < userRowimageViewArray.length ; w++){
+            
+            userRowimageViewArray[w] = new ImageView();
+            
+            
+            userRowimageViewArray[w] = new ImageView(imageBlank);
+            
+            userRowimageViewArray[w].setFitHeight(height/25);
+            userRowimageViewArray[w].setFitWidth(width/55);
+            userRowArray[w] = new Label();
+            userRowArray[w].setGraphic(userRowimageViewArray[w]);
+            userRowArray[w].setAlignment(Pos.TOP_CENTER);
             
         }
         
         
-        //setting background, font and text of the 1X2-labels
-        for(int q = 0 ; q < arrayLabel1X2.length ; q++){
-            arrayLabel1X2[q] = new Label();
-            BackgroundFill background_fill = new BackgroundFill(Color.LIGHTGREEN,  CornerRadii.EMPTY, Insets.EMPTY); 
-            Background background = new Background(background_fill);
-            arrayLabel1X2[q].setBackground(background);
-            arrayLabel1X2[q].setText("  1 X 2 ");
-            arrayLabel1X2[q].setFont(labelFont);
-        }
-        
-        
-        
-        int totalLabels = (rowNumberlabelArray.length + MGArray.length + arrayLabel1X2.length);
+        int totalLabels = (rowNumberlabelArray.length + MGArray.length + userRowArray.length);
         int squareNumber = 0; 
         int hboxIndex = 0;
-        int array1X2Number = 0;
+        int userRowIndex = 0;
         
         //adding rowNumbers, MG-pictures and 1X2-labels to the screen (stage)
         for (int addIndex = 0 ; addIndex < totalLabels ; addIndex++ ){
@@ -164,10 +181,21 @@ public class Left extends VBox{
                 squareNumber++;
             }
             else if (squareNumber == 2){
-                hboxLabelArray[hboxIndex].getChildren().add(arrayLabel1X2[array1X2Number]);
-                array1X2Number++;
+                hboxLabelArray[hboxIndex].getChildren().add(userRowArray[userRowIndex]);
+                squareNumber++;
+                userRowIndex++;
+            }
+            else if (squareNumber == 3){
+                hboxLabelArray[hboxIndex].getChildren().add(userRowArray[userRowIndex]);
+                squareNumber++;
+                userRowIndex++;
+            }
+            
+            else if (squareNumber == 4){
+                hboxLabelArray[hboxIndex].getChildren().add(userRowArray[userRowIndex]);
                 hboxIndex++;
                 squareNumber = 0;
+                userRowIndex++;
             }
             
         }
@@ -182,12 +210,27 @@ public class Left extends VBox{
         
     }
     
+    //load image for blank
+    public void loadLabelImages(){
+        
+        try {
+            
+            imageBlank = new Image(imageBlankPath);
+        }
+        catch(Exception e) {
+            System.out.println("Gick ej att ladda bild!");
+            //System.exit(0);
+            return;
+        }
+        
+    }
+    
     public Label[] getMGArray(){
         return MGArray;
     }
     
     public ImageView[] getImageViewArray(){
-        return imageViewArray;
+        return MGimageViewArray;
     }
     
     public boolean get5MGsFlag(){

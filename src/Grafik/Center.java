@@ -28,7 +28,8 @@ import javafx.stage.Screen;
 //the center-object of the borderpane
 public class Center extends VBox{
     
-    private Label headingLabel = new Label("Tipsresultat");
+    private Label headingLabel = new Label("Rätt rad:");
+    private Label spaceLabel = new Label();
     private HBox spaceHbox = new HBox();
     
     private HBox[] hboxLabelArray = new HBox[13];
@@ -48,14 +49,18 @@ public class Center extends VBox{
         
         this.setPadding(new Insets(10, 10, 10, 100));  
         this.setSpacing(1);
+        this.setAlignment(Pos.TOP_LEFT);
         
         //set properties for top label and adding it to the layout
         Font headingFont ;
         headingFont = Font.font("Arial", FontWeight.BOLD, 20);
         headingLabel.setFont(headingFont);
         headingLabel.setTextFill(Color.RED);
-        headingLabel.setAlignment(Pos.TOP_CENTER);
+        //headingLabel.setAlignment(Pos.TOP_CENTER);
         this.getChildren().add(headingLabel);
+        spaceLabel.setFont(headingFont);
+        spaceLabel.setTextFill(Color.BLUE);
+        this.getChildren().add(spaceLabel);
         
         loadLabelImages();
         
