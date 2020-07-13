@@ -46,11 +46,14 @@ public class Left extends VBox{
     private ImageView imageView1;
     private ImageView imageView2;
     
-    private HBox spaceHbox = new HBox();
+    private HBox spaceHbox1 = new HBox();
     private HBox[] hboxLabelArray = new HBox[13];
     private boolean flagOf5MGs = false;
     
     private int[] chosenMGIndexes = new int[5];
+    
+    private HBox spaceHbox2 = new HBox();
+    private Label statusLabel = new Label("Info: Ditt system är inte komplett!");
     
     
     public Left(){
@@ -71,9 +74,9 @@ public class Left extends VBox{
         this.getChildren().add(headingLabel2);
         
         //a HBox for filling up space
-        spaceHbox = new HBox();
-        spaceHbox.setPadding(new Insets(10, 10, 10, 100));
-        this.getChildren().add(spaceHbox);
+        spaceHbox1 = new HBox();
+        spaceHbox1.setPadding(new Insets(10, 10, 10, 100));
+        this.getChildren().add(spaceHbox1);
         
         loadLabelImages();
         
@@ -208,6 +211,17 @@ public class Left extends VBox{
         
         this.getChildren().addAll(hboxLabelArray);
         
+        //a HBox for filling up space
+        spaceHbox2 = new HBox();
+        spaceHbox2.setPadding(new Insets(10, 10, 10, 100));
+        this.getChildren().add(spaceHbox2);
+        
+        Font statusFont ;
+        statusFont = Font.font("Arial", FontWeight.BOLD, 20);
+        statusLabel.setFont(statusFont);
+        statusLabel.setTextFill(Color.RED);
+        this.getChildren().add(statusLabel);
+        
     }
     
     //load image for blank
@@ -229,8 +243,16 @@ public class Left extends VBox{
         return MGArray;
     }
     
-    public ImageView[] getImageViewArray(){
+    public Label[] getUserRowArray(){
+        return userRowArray;
+    }
+    
+    public ImageView[] getMGImageViewArray(){
         return MGimageViewArray;
+    }
+    
+    public ImageView[] getUserRowImageViewArray(){
+        return userRowimageViewArray;
     }
     
     public boolean get5MGsFlag(){

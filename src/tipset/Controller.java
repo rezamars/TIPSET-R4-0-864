@@ -19,6 +19,7 @@ import model.CountButtonListener;
 import model.MGListener;
 import model.ResultCounter;
 import model.ResultRowListener;
+import model.UserSystemListener;
 
 /**
  *
@@ -35,8 +36,11 @@ public class Controller extends Application {
     private Label[] MGArray ;
     private MGListener MGlistener;
     private Label[] result1X2Array;
+    private Label[] userRowArray;
     private ResultRowListener resultRowListener;
     private CountButtonListener countButtonListener;
+    
+    private UserSystemListener userSystemListener;
     
     private ResultCounter resultCounter;
     private boolean flag13 = false;
@@ -54,15 +58,16 @@ public class Controller extends Application {
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.setWidth((primaryScreenBounds.getWidth())/1.3);
-        primaryStage.setHeight((primaryScreenBounds.getHeight())/1.1);
+        primaryStage.setHeight((primaryScreenBounds.getHeight())/1.05);
         
         //referring to arrays
         this.MGArray = left.getMGArray();
+        this.userRowArray = left.getUserRowArray();
         this.result1X2Array = center.getResultArray();
         
         //creating new instances of various objects
         MGlistener = new MGListener(MGArray, left, center, right, flag13);
-        //MGlistener.addMGLabelListener();
+        MGlistener.addMGLabelListener();
         
         resultRowListener = new ResultRowListener(result1X2Array, center, MGlistener, flag13);
         resultRowListener.addResultLabelListener();
@@ -74,6 +79,9 @@ public class Controller extends Application {
         
         clearButtonListener = new ClearButtonListener(right, MGlistener, flag13, resultRowListener);
         clearButtonListener.addClearButtonListener();
+        
+        userSystemListener = new UserSystemListener(userRowArray, left);
+        userSystemListener.addUserSystemLabelListener();
         
         
         View v = new View(primaryStage, top, left, center, right);

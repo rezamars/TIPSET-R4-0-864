@@ -24,7 +24,7 @@ public class MGListener    {
     private Left left;
     private Center center;
     private Right right;
-    private ImageView[] imageViewArray;
+    private ImageView[] MGimageViewArray;
     private int MGIndex = -1;
     private boolean[] mgFlagArray = new boolean[13];
     
@@ -52,10 +52,9 @@ public class MGListener    {
         this.left = left1;
         this.center = center1;
         this.right = right1;
-        this.imageViewArray = left1.getImageViewArray();
         this.imageView1 = left1.getImageView1();
         this.imageView2 = left1.getImageView2();
-        this.imageViewArray = left1.getImageViewArray();
+        this.MGimageViewArray = left1.getMGImageViewArray();
         this.flagOf5MGs = left1.get5MGsFlag();
         this.chosenMGIndexes = left1.getChosenMGIndexes();
         this.result13Flag = flag13;
@@ -125,6 +124,7 @@ public class MGListener    {
             
             if (mgFlagArray[MGIndex] == false){
                 
+            /*    
             if (numberOfMGs == 5){
                 for (int y = 0; y < MGArray.length ; y++){
                     if (mgFlagArray[y] != true){
@@ -135,20 +135,22 @@ public class MGListener    {
                     }
                 }
             }
+            */
                 
-            imageViewArray[MGIndex].setImage(MGimage1);
-            MGArray[MGIndex].setGraphic(imageViewArray[MGIndex]);
+            MGimageViewArray[MGIndex].setImage(MGimage1);
+            MGArray[MGIndex].setGraphic(MGimageViewArray[MGIndex]);
                 
+            /*
             if (numberOfMGs > 0){
                 numberOfMGs--;
             }
-                
+            */    
             
             }
             else if (mgFlagArray[MGIndex] == true){
 
-                imageViewArray[MGIndex].setImage(MGimage2);
-                MGArray[MGIndex].setGraphic(imageViewArray[MGIndex]);
+                MGimageViewArray[MGIndex].setImage(MGimage2);
+                MGArray[MGIndex].setGraphic(MGimageViewArray[MGIndex]);
                 numberOfMGs++;
             }
             
@@ -156,7 +158,7 @@ public class MGListener    {
         
         
             
-            
+        /*    
         if (numberOfMGs > 4){
             System.out.println("5+++++ " );
             for (int y = 0; y < MGArray.length ; y++){
@@ -168,10 +170,11 @@ public class MGListener    {
                 }
             }
         }
-        
+        */
          
         int iter = 0;
         
+        /*
         if (numberOfMGs == 5){
             for (int y = 0; y < mgFlagArray.length ; y++){
                 if (mgFlagArray[y] == true){
@@ -185,7 +188,7 @@ public class MGListener    {
         else{
             flagOf5MGs = false;
         }
-        
+        */
     }
 
     //enable and disable the count-button depending on numbers of MGs and result-input
@@ -214,8 +217,8 @@ public class MGListener    {
         }
         
         for(int w = 0 ; w < MGArray.length ; w++){
-            imageViewArray[w].setImage(MGimage1);
-            MGArray[w].setGraphic(imageViewArray[w]);
+            MGimageViewArray[w].setImage(MGimage1);
+            MGArray[w].setGraphic(MGimageViewArray[w]);
             MGArray[w].setDisable(false);
         }
         
