@@ -38,7 +38,7 @@ public class ResultCounter {
         this.chosenMGIndexes = left1.getChosenMGIndexes();
         this.result13Array = center1.getResult13Array();
         this.R8_0_27_Tables = right1.getSystemTables();
-        this.flagOf5MGs = left1.get5MGsFlag();
+        this.flagOf5MGs = left1.get6MGsFlag();
         this.numberOfRightsTextArea = right1.getTextArea();
     }
     

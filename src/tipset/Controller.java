@@ -19,7 +19,7 @@ import model.CountButtonListener;
 import model.MGListener;
 import model.ResultCounter;
 import model.ResultRowListener;
-import model.UserSystemListener;
+import model.User1X2Listener;
 
 /**
  *
@@ -40,7 +40,7 @@ public class Controller extends Application {
     private ResultRowListener resultRowListener;
     private CountButtonListener countButtonListener;
     
-    private UserSystemListener userSystemListener;
+    private User1X2Listener user1X2Listener;
     
     private ResultCounter resultCounter;
     private boolean flag13 = false;
@@ -80,8 +80,8 @@ public class Controller extends Application {
         clearButtonListener = new ClearButtonListener(right, MGlistener, flag13, resultRowListener);
         clearButtonListener.addClearButtonListener();
         
-        userSystemListener = new UserSystemListener(userRowArray, left);
-        userSystemListener.addUserSystemLabelListener();
+        user1X2Listener = new User1X2Listener(userRowArray, left, MGlistener);
+        user1X2Listener.addUser1X2LabelListener();
         
         
         View v = new View(primaryStage, top, left, center, right);

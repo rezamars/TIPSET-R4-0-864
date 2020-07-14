@@ -29,7 +29,7 @@ import model.ReadFile;
 public class Right extends VBox{
     
     public ReadFile readFile;
-    private String[][] R8_0_27_Tables = new String[27][8];
+    private String[][] R4_0_9_Tables = new String[9][4];
     private Button countButton = new Button("Räkna antal rätt");
     
     private HBox spaceHbox1 = new HBox();
@@ -50,9 +50,9 @@ public class Right extends VBox{
         this.setSpacing(1);
         
         //filling the tables-array with zero text
-        for (int x = 0 ; x < 27 ; x++){
-            for (int y = 0 ; y < 8 ; y++){
-                R8_0_27_Tables[x][y] = "";
+        for (int x = 0 ; x < 9 ; x++){
+            for (int y = 0 ; y < 4 ; y++){
+                R4_0_9_Tables[x][y] = "";
             }
         }
         
@@ -111,12 +111,12 @@ public class Right extends VBox{
     
     public void ReadTables(){
         
-        R8_0_27_Tables = readFile.readFileFromTextFile();
+        R4_0_9_Tables = readFile.readFileFromTextFile();
                 
     }
     
     public String[][] getSystemTables(){
-        return R8_0_27_Tables;
+        return R4_0_9_Tables;
     }
    
     public Button getCountButton(){

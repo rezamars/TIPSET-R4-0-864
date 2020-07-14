@@ -48,12 +48,13 @@ public class Left extends VBox{
     
     private HBox spaceHbox1 = new HBox();
     private HBox[] hboxLabelArray = new HBox[13];
-    private boolean flagOf5MGs = false;
+    private boolean flagOf6MGs = false;
+    private int numberOfMGs = 0;
     
-    private int[] chosenMGIndexes = new int[5];
+    private int[] chosenMGIndexes = new int[6];
     
     private HBox spaceHbox2 = new HBox();
-    private Label statusLabel = new Label("Info: Ditt system är inte komplett!");
+    private Label statusLabel = new Label("Info: Ditt system är inte korrekt ifylld!");
     
     
     public Left(){
@@ -220,6 +221,7 @@ public class Left extends VBox{
         statusFont = Font.font("Arial", FontWeight.BOLD, 20);
         statusLabel.setFont(statusFont);
         statusLabel.setTextFill(Color.RED);
+        statusLabel.setStyle("-fx-border-color: blue;");
         this.getChildren().add(statusLabel);
         
     }
@@ -255,8 +257,8 @@ public class Left extends VBox{
         return userRowimageViewArray;
     }
     
-    public boolean get5MGsFlag(){
-        return flagOf5MGs;
+    public boolean get6MGsFlag(){
+        return flagOf6MGs;
     }
     
     public int[] getChosenMGIndexes(){
@@ -269,6 +271,10 @@ public class Left extends VBox{
     
     public ImageView getImageView2(){
         return imageView2;
+    }
+    
+    public int getNumberOfMGs(){
+        return this.numberOfMGs;
     }
     
 }

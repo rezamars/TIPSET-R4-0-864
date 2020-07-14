@@ -21,19 +21,19 @@ public class ReadFile {
     private Scanner scanner;
     private File file;
     private String s = "-1";
-    private String[][] R8_0_27_Tables;
+    private String[][] R4_0_9_Tables;
     private int rowNumber = -1;
     private int signNumber = -1;
     
     
     public ReadFile(Right right1){
         
-        this.R8_0_27_Tables = right1.getSystemTables();
+        this.R4_0_9_Tables = right1.getSystemTables();
         
         //filling the tables-array with ""
-        for(int i = 0 ; i < 27 ; i++){
-            for(int k = 0 ; k < 8 ; k++){
-                 R8_0_27_Tables[i][k] = "";
+        for(int i = 0 ; i < 9 ; i++){
+            for(int k = 0 ; k < 4 ; k++){
+                 R4_0_9_Tables[i][k] = "";
             }
             
         }
@@ -46,7 +46,7 @@ public class ReadFile {
         
         InputStream inputs;
         inputs = getClass().getClassLoader().getResourceAsStream(
-                "R8-0-27.txt");
+                "R4-0-9.txt");
         
         
         try{
@@ -57,18 +57,22 @@ public class ReadFile {
                 while(scanner.hasNext()){
                     
                     
-                    for(int i = 0 ; i < 27 ; i++){
+                    for(int i = 0 ; i < 9 ; i++){
                         rowNumber++;
                         
-                        for(int k = 0 ; k < 8 ; k++){
+                        for(int k = 0 ; k < 4 ; k++){
                             
                             signNumber++;
                             s = scanner.next();
                             
-                            R8_0_27_Tables[i][k] = s;
+                            R4_0_9_Tables[i][k] = s;
                             
                             
-                            if(k == 7){
+                            if(k == 3){
+                                s = scanner.next();
+                                s = scanner.next();
+                                s = scanner.next();
+                                s = scanner.next();
                                 s = scanner.next();
                                 s = scanner.next();
                                 s = scanner.next();
@@ -82,10 +86,10 @@ public class ReadFile {
                 }
                 
                 //filling the tables-array
-		for(int i = 0 ; i < 27 ; i++){
-                    for(int k = 0 ; k < 8 ; k++){
-                        if(R8_0_27_Tables[i][k].equalsIgnoreCase("1") || R8_0_27_Tables[i][k].equalsIgnoreCase("X") || 
-                                R8_0_27_Tables[i][k].equalsIgnoreCase("2")){
+		for(int i = 0 ; i < 9 ; i++){
+                    for(int k = 0 ; k < 4 ; k++){
+                        if(R4_0_9_Tables[i][k].equalsIgnoreCase("1") || R4_0_9_Tables[i][k].equalsIgnoreCase("X") || 
+                                R4_0_9_Tables[i][k].equalsIgnoreCase("2")){
                             
                         }
                         else{
@@ -106,7 +110,7 @@ public class ReadFile {
 				
 	}
         
-        return R8_0_27_Tables;
+        return R4_0_9_Tables;
     }
     
     
