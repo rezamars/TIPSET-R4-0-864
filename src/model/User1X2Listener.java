@@ -39,17 +39,20 @@ public class User1X2Listener {
     
     private Left left;
     private MGListener MGlistener;
+    private CombinedSystemChecker combinedSystemChecker;
     
     
-    public User1X2Listener(Label[] userRowArray1, Left left1, MGListener MGlistener1){
+    public User1X2Listener(Label[] userRowArray1, Left left1, MGListener MGListener1, CombinedSystemChecker combinedSystemChecker1){
         
         this.left = left1;
         this.userRowArray = userRowArray1;
         this.userRowimageViewArray = left1.getUserRowImageViewArray();
         
         this.chosenMGIndexes = left1.getChosenMGIndexes();
-        this.MGlistener = MGlistener1;
-        //this.numberOfMGs = MGlistener.getNumberOfMGs();
+        this.MGlistener = MGListener1;
+        this.numberOfMGs = MGListener1.getNumberOfMGs();
+        this.combinedSystemChecker = combinedSystemChecker1;
+        
         
         for (int a = 0 ; a < user1X2FlagArray.length ; a++){
             user1X2FlagArray[a] = false;
@@ -119,7 +122,7 @@ public class User1X2Listener {
                    
                     user1X2LabelFlagSetter();
                     updateLabelImage();
-                    checkIfUserSystemIsComplete();
+                    this.combinedSystemChecker.checkIfUserSystemIsComplete();
                     
                 });
         }
@@ -221,22 +224,11 @@ public class User1X2Listener {
     }
       
       
-    public void checkIfUserSystemIsComplete(){
-        
-        int numberOfRThreeWays = 0;
-        int numberOfMThreeWays = 0;
-        int numberOfMTwoWays = 0;
-        
-        numberOfMGs = MGlistener.getNumberOfMGs();
-        
-        System.out.println("in check...MGs= " + numberOfMGs);
-        
-        if (numberOfMGs == 6 ){
-            for (int i = 0 ; i < 6 ; i++){
-                 System.out.println(chosenMGIndexes[i]);
-            }
-        }
-        
+    public boolean[] getUser1X2FlagArray(){
+        return this.user1X2FlagArray;
     }
+    
+    
+    
     
 }

@@ -49,7 +49,6 @@ public class Left extends VBox{
     private HBox spaceHbox1 = new HBox();
     private HBox[] hboxLabelArray = new HBox[13];
     private boolean flagOf6MGs = false;
-    private int numberOfMGs = 0;
     
     private int[] chosenMGIndexes = new int[6];
     
@@ -273,8 +272,6 @@ public class Left extends VBox{
         return imageView2;
     }
     
-    public int getNumberOfMGs(){
-        return this.numberOfMGs;
-    }
+    
     
 }
