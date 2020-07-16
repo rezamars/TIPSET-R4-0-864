@@ -5,6 +5,7 @@
  */
 package model;
 
+import Grafik.Left;
 import Grafik.Right;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextArea;
 public class ClearButtonListener {
     
     private Right right;
+    private Left left;
     private Button clearButton;
     private MGListener MGlistener;
     private boolean[] mgFlagArray;
@@ -24,9 +26,10 @@ public class ClearButtonListener {
     private ResultRowListener resultRowListener;
     private boolean[] resultFlagArray;
     private TextArea numberOfRightsTextArea;
+    private boolean flagOfCorrectSystem;
     
     
-    public ClearButtonListener(Right right1, MGListener MGlistener1, boolean flag13, ResultRowListener resultRowListener1){
+    public ClearButtonListener(Right right1, MGListener MGlistener1, boolean flag13, ResultRowListener resultRowListener1, Left left1){
         
         this.right = right1;
         this.clearButton = right.getClearButton();
@@ -36,6 +39,7 @@ public class ClearButtonListener {
         this.resultRowListener = resultRowListener1;
         this.resultFlagArray = resultRowListener.getResultFlags();
         this.numberOfRightsTextArea = right.getTextArea();
+        this.flagOfCorrectSystem = left1.getFlagOfCorrectSystem();
         
     }
     

@@ -220,7 +220,7 @@ public class User1X2Listener {
             */
         }
             
-        //this.MGListener.updateEnableCountCButton(result13Flag);
+        //this.MGlistener.updateEnableCountCButton(result13Flag);
     }
       
       

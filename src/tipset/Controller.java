@@ -75,7 +75,7 @@ public class Controller extends Application {
         MGlistener = new MGListener(MGArray, left, center, right, flag13, combinedSystemChecker);
         MGlistener.addMGLabelListener();
         
-        resultRowListener = new ResultRowListener(result1X2Array, center, MGlistener, flag13);
+        resultRowListener = new ResultRowListener(result1X2Array, center, MGlistener, flag13, left);
         resultRowListener.addResultLabelListener();
         
         resultCounter = new ResultCounter(left,center,right);
@@ -83,13 +83,13 @@ public class Controller extends Application {
         countButtonListener = new CountButtonListener(right, resultCounter);
         countButtonListener.addCountButtonListener();
         
-        clearButtonListener = new ClearButtonListener(right, MGlistener, flag13, resultRowListener);
+        clearButtonListener = new ClearButtonListener(right, MGlistener, flag13, resultRowListener, left);
         clearButtonListener.addClearButtonListener();
         
         user1X2Listener = new User1X2Listener(userRowArray, left, MGlistener, combinedSystemChecker);
         user1X2Listener.addUser1X2LabelListener();
         
-        combinedSystemChecker.get2Listeners(MGlistener, user1X2Listener, left);
+        combinedSystemChecker.get2Listeners(MGlistener, user1X2Listener, left, flag13);
         
         
         View v = new View(primaryStage, top, left, center, right);

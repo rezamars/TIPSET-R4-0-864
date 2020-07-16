@@ -49,7 +49,7 @@ public class Left extends VBox{
     private HBox spaceHbox1 = new HBox();
     private HBox[] hboxLabelArray = new HBox[13];
     private boolean flagOf6MGs = false;
-    
+    private boolean flagOfCorrectSystem = false;
     private int[] chosenMGIndexes = new int[6];
     
     private HBox spaceHbox2 = new HBox();
@@ -272,6 +272,16 @@ public class Left extends VBox{
         return imageView2;
     }
     
+    public Label getStatusLabel(){
+        return statusLabel;
+    }
     
+    public boolean getFlagOfCorrectSystem(){
+        return flagOfCorrectSystem;
+    }
+    
+    public void setFlagOfCorrectSystem(boolean flag){
+        flagOfCorrectSystem = flag;
+    }
     
 }

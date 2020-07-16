@@ -6,6 +6,7 @@
 package model;
 
 import Grafik.Center;
+import Grafik.Left;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,9 +48,10 @@ public class ResultRowListener {
     
     private MGListener MGListener;
     private int numberOfResChecked = 0;
+    private boolean flagOfCorrectSystem;
     
     
-    public ResultRowListener(Label[] resultArray, Center center1, MGListener MGListener1, boolean flag13){
+    public ResultRowListener(Label[] resultArray, Center center1, MGListener MGListener1, boolean flag13, Left left1){
         
         this.result1X2Array = resultArray;
         this.center = center1;
@@ -57,6 +59,8 @@ public class ResultRowListener {
         this.result13Array = center1.getResult13Array();
         this.MGListener = MGListener1;
         this.result13Flag = flag13;
+        this.flagOfCorrectSystem = left1.getFlagOfCorrectSystem();
+        
         
         for (int a = 0 ; a < resultFlagArray.length ; a++){
             resultFlagArray[a] = false;

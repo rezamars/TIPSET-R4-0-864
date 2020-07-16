@@ -43,6 +43,8 @@ public class MGListener    {
     
     private User1X2Listener user1X2Listener;
     private CombinedSystemChecker combinedSystemChecker;
+    private boolean flagOfCorrectSystem;
+    
     
     
     public MGListener(Label[] MGA, Left left1, Center center1, Right right1, boolean flag13, CombinedSystemChecker combinedSystemChecker1){
@@ -62,7 +64,7 @@ public class MGListener    {
         this.chosenMGIndexes = left1.getChosenMGIndexes();
         this.result13Flag = flag13;
         this.combinedSystemChecker = combinedSystemChecker1;
-        //this.numberOfMGs = numberOfMGs1;
+        this.flagOfCorrectSystem = left.getFlagOfCorrectSystem();
         
         loadLabelImage();
         
@@ -202,8 +204,9 @@ public class MGListener    {
     public void updateEnableCountCButton(boolean flag13){
         
         this.result13Flag = flag13;
+        System.out.println("FlagOfCorrectSystem: " + this.left.getFlagOfCorrectSystem());
         
-        if ((flagOf6MGs == true) && (this.result13Flag == true)){
+        if ((flagOf6MGs == true) && (this.result13Flag == true) && (this.left.getFlagOfCorrectSystem() == true)){
             right.getCountButton().setDisable(false);
         }
         else{
