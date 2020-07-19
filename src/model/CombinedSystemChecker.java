@@ -21,6 +21,7 @@ public class CombinedSystemChecker {
     private Left left;
     private MGListener MGlistener;
     private User1X2Listener user1X2Listener;
+    private ResultRowListener resultRowListener;
     private int[] chosenMGIndexes;
     
     private Label statusLabel;
@@ -35,7 +36,8 @@ public class CombinedSystemChecker {
     }
     
     
-    public void get2Listeners(MGListener MGlistener1, User1X2Listener user1X2Listener1, Left left1, Boolean flagOf13){
+    public void get2Listeners(MGListener MGlistener1, User1X2Listener user1X2Listener1, Left left1, Boolean flagOf13, 
+            ResultRowListener resultRowListener1){
         
         this.MGlistener = MGlistener1;
         this.user1X2Listener = user1X2Listener1;
@@ -44,8 +46,9 @@ public class CombinedSystemChecker {
         this.chosenMGIndexes = left1.getChosenMGIndexes();
         this.statusLabel = left1.getStatusLabel();
         this.flagOfCorrectSystem = left1.getFlagOfCorrectSystem();
-        this.flag13 = flagOf13;
+        this.flag13 = resultRowListener1.get13Flag();
         this.left = left1;
+        this.resultRowListener = resultRowListener1;
         
     }
     
@@ -62,7 +65,7 @@ public class CombinedSystemChecker {
         //numberOfMGs = this.numberOfMGs;
         //this.chosenMGIndexes = left.getChosenMGIndexes();
         
-        System.out.println("in check...MGs= " + numberOfMGs);
+        //System.out.println("in check...MGs= " + numberOfMGs);
         
         //if (numberOfMGs == 6 ){
             for (int i = 0 ; i < 6 ; i++){
@@ -174,20 +177,25 @@ public class CombinedSystemChecker {
             this.left.setFlagOfCorrectSystem(flagOfCorrectSystem);
         }
         
+        /*
         if (flag13 == true && flagOfCorrectSystem == true){
             this.MGlistener.updateEnableCountCButton(flag13);
         }
         else{
             
         }
+        */
         
+        this.MGlistener.updateEnableCountCButton(this.resultRowListener.get13Flag());
+        
+        /*
         System.out.println("---------------");
         System.out.println("NumberofGamesMarked: " + numberOfGamesMarked);
         System.out.println("R3: " + numberOfRThreeWays);
         System.out.println("R2: " + numberOfRTwoWays);
         System.out.println("M3: " + numberOfMThreeWays);
         System.out.println("M2: " + numberOfMTwoWays);
-        
+        */
     }
     
 }

@@ -40,9 +40,11 @@ public class User1X2Listener {
     private Left left;
     private MGListener MGlistener;
     private CombinedSystemChecker combinedSystemChecker;
+    private ResultRowListener resultRowListener;
     
     
-    public User1X2Listener(Label[] userRowArray1, Left left1, MGListener MGListener1, CombinedSystemChecker combinedSystemChecker1){
+    public User1X2Listener(Label[] userRowArray1, Left left1, MGListener MGListener1, CombinedSystemChecker combinedSystemChecker1, 
+            ResultRowListener resultRowListener1){
         
         this.left = left1;
         this.userRowArray = userRowArray1;
@@ -52,6 +54,7 @@ public class User1X2Listener {
         this.MGlistener = MGListener1;
         this.numberOfMGs = MGListener1.getNumberOfMGs();
         this.combinedSystemChecker = combinedSystemChecker1;
+        this.resultRowListener = resultRowListener1;
         
         
         for (int a = 0 ; a < user1X2FlagArray.length ; a++){
@@ -98,21 +101,36 @@ public class User1X2Listener {
                         
                         if(event.getSource() == userRowArray[loopIndex]){
                             userRowLabelIndex = loopIndex;
-                            strArrayTypeOfImage = "1";
+                            if (strArray[userRowLabelIndex].equalsIgnoreCase("")){
+                                strArrayTypeOfImage = "1";
+                            }
+                            else{
+                                strArrayTypeOfImage = "";
+                            }
                             strArray[userRowLabelIndex] = strArrayTypeOfImage;
                             //strArray[userRowLabelIndex + 1] = "";
                             //strArray[userRowLabelIndex + 2] = "";
                         }
                         else if(event.getSource() == userRowArray[loopIndex+1]){
                             userRowLabelIndex = loopIndex + 1 ;
-                            strArrayTypeOfImage = "X";
+                            if (strArray[userRowLabelIndex].equalsIgnoreCase("")){
+                                strArrayTypeOfImage = "X";
+                            }
+                            else{
+                                strArrayTypeOfImage = "";
+                            }
                             strArray[userRowLabelIndex] = strArrayTypeOfImage;
                             //strArray[userRowLabelIndex - 1] = "";
                             //strArray[userRowLabelIndex + 1] = "";
                         }
                         else if(event.getSource() == userRowArray[loopIndex+2]){
                             userRowLabelIndex = loopIndex + 2 ;
-                            strArrayTypeOfImage = "2";
+                            if (strArray[userRowLabelIndex].equalsIgnoreCase("")){
+                                strArrayTypeOfImage = "2";
+                            }
+                            else{
+                                strArrayTypeOfImage = "";
+                            }
                             strArray[userRowLabelIndex] = strArrayTypeOfImage;
                             //strArray[userRowLabelIndex - 1] = "";
                             //strArray[userRowLabelIndex - 2] = "";
@@ -220,7 +238,7 @@ public class User1X2Listener {
             */
         }
             
-        //this.MGlistener.updateEnableCountCButton(result13Flag);
+        this.MGlistener.updateEnableCountCButton(this.resultRowListener.get13Flag());
     }
       
       
@@ -228,7 +246,9 @@ public class User1X2Listener {
         return this.user1X2FlagArray;
     }
     
-    
+    public String[] getStrArray(){
+        return this.strArray;
+    }
     
     
 }

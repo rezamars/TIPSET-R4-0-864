@@ -92,6 +92,7 @@ public class MGListener    {
                     updateLabelImage();
                     this.combinedSystemChecker.checkIfUserSystemIsComplete();
                     updateEnableCountCButton(this.result13Flag);
+                    
                     //System.out.println("In MGListener, NumberOfMGs: " + numberOfMGs);
                 });
         }
@@ -204,7 +205,13 @@ public class MGListener    {
     public void updateEnableCountCButton(boolean flag13){
         
         this.result13Flag = flag13;
+        
+        /*
         System.out.println("FlagOfCorrectSystem: " + this.left.getFlagOfCorrectSystem());
+        System.out.println("FlagOf6MGs: " + flagOf6MGs);
+        System.out.println("result13Flag: " + result13Flag);
+        System.out.println("---------------");
+        */
         
         if ((flagOf6MGs == true) && (this.result13Flag == true) && (this.left.getFlagOfCorrectSystem() == true)){
             right.getCountButton().setDisable(false);

@@ -254,9 +254,11 @@ public class ResultRowListener {
       }
     
       public boolean[] getResultFlags(){
-          
           return this.resultFlagArray;
-          
+      }
+      
+      public boolean get13Flag(){
+          return this.result13Flag;
       }
       
       //resetting the flags, results, grafics of resultarray and disabling the count-button

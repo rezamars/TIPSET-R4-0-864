@@ -86,11 +86,12 @@ public class Controller extends Application {
         clearButtonListener = new ClearButtonListener(right, MGlistener, flag13, resultRowListener, left);
         clearButtonListener.addClearButtonListener();
         
-        user1X2Listener = new User1X2Listener(userRowArray, left, MGlistener, combinedSystemChecker);
+        user1X2Listener = new User1X2Listener(userRowArray, left, MGlistener, combinedSystemChecker, resultRowListener);
         user1X2Listener.addUser1X2LabelListener();
         
-        combinedSystemChecker.get2Listeners(MGlistener, user1X2Listener, left, flag13);
+        combinedSystemChecker.get2Listeners(MGlistener, user1X2Listener, left, flag13, resultRowListener);
         
+        resultCounter.setUser1X2Listener(user1X2Listener);
         
         View v = new View(primaryStage, top, left, center, right);
         
