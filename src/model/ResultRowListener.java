@@ -283,4 +283,11 @@ public class ResultRowListener {
         this.MGListener.updateEnableCountCButton(result13Flag);
     }
       
+      
+    public String[] getStrArray(){
+        return this.strArray;
+    }
+        
+        
+      
 }

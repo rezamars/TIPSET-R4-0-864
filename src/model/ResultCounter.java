@@ -256,11 +256,214 @@ public class ResultCounter {
                 }
             }
             
-            System.out.println("numberOfRights: " + numberOfRight);
+            
+            
+            int strArrayIterator1 = 0;
+            
+            for (int c = 0 ; c < indexesOfMTwos.length ; c++){
+                
+                switch (indexesOfMTwos[c]) {
+                    case 0:
+                        strArrayIterator1 = 0;
+                        break;
+                    case 1:
+                        strArrayIterator1 = 3;
+                        break;
+                    case 2:
+                        strArrayIterator1 = 6;
+                        break;
+                    case 3:
+                        strArrayIterator1 = 9;
+                        break;
+                    case 4:
+                        strArrayIterator1 = 12;
+                        break;
+                    case 5:
+                        strArrayIterator1 = 15;
+                        break;
+                    case 6:
+                        strArrayIterator1 = 18;
+                        break;
+                    case 7:
+                        strArrayIterator1 = 21;
+                        break;
+                    case 8:
+                        strArrayIterator1 = 24;
+                        break;
+                    case 9:
+                        strArrayIterator1 = 27;
+                        break;
+                    case 10:
+                        strArrayIterator1 = 30;
+                        break;
+                    case 11:
+                        strArrayIterator1 = 33;
+                        break;
+                    case 12:
+                        strArrayIterator1 = 36;
+                        break;    
+                    default:
+                        break;
+                }
+                
+                
+                if(result13Array[indexesOfMTwos[c]].equalsIgnoreCase("1")){
+                    //System.out.println("result13Array: " + result13Array[indexesOfMTwos[c]]);
+                    //System.out.println("strArray: " + result13Array[indexesOfMTwos[c]]);
+                    
+                    if(((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1])) && 
+                            ((strArray[strArrayIterator1+1]).equalsIgnoreCase("X"))) || 
+                        ((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1])) && 
+                            ((strArray[strArrayIterator1+2]).equalsIgnoreCase("2")))){
+                        //System.out.println("in first M2 if...");
+                        numberOfRight++;
+                    }
+                }
+                else if(result13Array[indexesOfMTwos[c]].equalsIgnoreCase("X")){
+                    if(((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1+1])) && 
+                            ((strArray[strArrayIterator1]).equalsIgnoreCase("1"))) || 
+                        ((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1+1])) && 
+                            ((strArray[strArrayIterator1+2]).equalsIgnoreCase("2")))){
+                        //System.out.println("in first M2 if...");
+                        numberOfRight++;
+                    }
+                }
+                else if(result13Array[indexesOfMTwos[c]].equalsIgnoreCase("2")){
+                    if(((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1+2])) && 
+                            ((strArray[strArrayIterator1]).equalsIgnoreCase("1"))) || 
+                        ((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1+2])) && 
+                            ((strArray[strArrayIterator1+1]).equalsIgnoreCase("X")))){
+                        //System.out.println("in first M2 if...");
+                        numberOfRight++;
+                    }
+                }
+                
+            }
             
             /*
+            for (int l = 0 ; l < indexesOfMTwos.length ; l++){
+                
+                for(int x = 0 ; x < 39 ; x+=3){
+                     
+                     if(result13Array[indexesOfMTwos[l]].equalsIgnoreCase(strArray[x])){
+                         numberOfRight++;
+                         break;
+                     }
+                     else if (result13Array[indexesOfMTwos[l]].equalsIgnoreCase(strArray[x+1])){
+                         numberOfRight++;
+                         break;
+                     }
+                     else if (result13Array[indexesOfMTwos[l]].equalsIgnoreCase(strArray[x+2])){
+                         numberOfRight++;
+                         break;
+                     }
+                     
+                 }
+                
+            }
+            */
+            
+            
+            int strArrayIterator2 = 0;
+           
+            for (int k = 0 ; k < indexesOfOnes.length ; k++){
+                
+                switch (indexesOfOnes[k]) {
+                    case 0:
+                        strArrayIterator2 = 0;
+                        break;
+                    case 1:
+                        strArrayIterator2 = 3;
+                        break;
+                    case 2:
+                        strArrayIterator2 = 6;
+                        break;
+                    case 3:
+                        strArrayIterator2 = 9;
+                        break;
+                    case 4:
+                        strArrayIterator2 = 12;
+                        break;
+                    case 5:
+                        strArrayIterator2 = 15;
+                        break;
+                    case 6:
+                        strArrayIterator2 = 18;
+                        break;
+                    case 7:
+                        strArrayIterator2 = 21;
+                        break;
+                    case 8:
+                        strArrayIterator2 = 24;
+                        break;
+                    case 9:
+                        strArrayIterator2 = 27;
+                        break;
+                    case 10:
+                        strArrayIterator2 = 30;
+                        break;
+                    case 11:
+                        strArrayIterator2 = 33;
+                        break;
+                    case 12:
+                        strArrayIterator2 = 36;
+                        break;    
+                    default:
+                        break;
+                }
+                
+                
+                if(result13Array[indexesOfOnes[k]].equalsIgnoreCase("1")){
+                    if(result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[strArrayIterator2])){
+                        numberOfRight++;
+                    }
+                }
+                else if(result13Array[indexesOfOnes[k]].equalsIgnoreCase("X")){
+                    if(result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[strArrayIterator2+1])){
+                        numberOfRight++;
+                    }
+                }
+                else if(result13Array[indexesOfOnes[k]].equalsIgnoreCase("2")){
+                    if(result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[strArrayIterator2+2])){
+                        numberOfRight++;
+                    }
+                }
+                
+            }
+                
+                /*
+                for(int x = 0 ; x < 39 ; x+=3){
+                    
+                     if(result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[x])){
+                         numberOfRight++;
+                         checkInt++;
+                         break;
+                     }
+                     else if (result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[x+1])){
+                         numberOfRight++;
+                         checkInt++;
+                         break;
+                     }
+                     else if (result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[x+2])){
+                         numberOfRight++;
+                         checkInt++;
+                         break;
+                     }
+                     
+                 }
+                */
+           
+            
+            
+            
+            
+            
+            //Adds 1 right because of the 1X2-threeM
+            numberOfRight++;
+            
             //adds the 5 MGs that are 1X2-marked from the user
-            numberOfRight +=5;
+            //numberOfRight +=5;
+            
             
             //adds number of rights to the 4 levels of won
             if (numberOfRight == 13){
@@ -275,12 +478,23 @@ public class ResultCounter {
             else if (numberOfRight == 10){
                 amountOf10++;
             }
-            */
+            
+            System.out.println("numberOfRights: " + numberOfRight);
+            
         }
         
+        System.out.println("--------------------------");
+        
+        for (int l = 0 ; l < indexesOfMTwos.length ; l++){
+            //System.out.println("indexesOfMTwos[l]]: " + indexesOfMTwos[l]);
+        }
+        
+        for(int p = 0 ; p < result13Array.length ; p++){
+            //System.out.println("result13Array: " + result13Array[p]);
+        }
          
         
-        //setRightsInTextArea();
+        setRightsInTextArea();
         
     }
     

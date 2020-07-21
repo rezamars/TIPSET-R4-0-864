@@ -57,11 +57,18 @@ public class User1X2Listener {
         this.resultRowListener = resultRowListener1;
         
         
+        initiate2Arrays();
+        
+        loadLabelImages();
+        
+        
+    }
+    
+    public void initiate2Arrays(){
+        
         for (int a = 0 ; a < user1X2FlagArray.length ; a++){
             user1X2FlagArray[a] = false;
         }
-        
-        loadLabelImages();
         
         for ( int s = 0 ; s < strArray.length ; s++){
             strArray[s] = "";
@@ -96,7 +103,7 @@ public class User1X2Listener {
         for(int x = 0 ; x<userRowArray.length ; x++){
                 
 	        userRowArray[x].setOnMouseClicked(event -> {
-                    
+                    //System.out.println("Click!");
                     for(int loopIndex = 0 ; loopIndex <userRowArray.length ; loopIndex+=3){
                         
                         if(event.getSource() == userRowArray[loopIndex]){
@@ -151,13 +158,13 @@ public class User1X2Listener {
         
         if (user1X2FlagArray[userRowLabelIndex] == false){
             user1X2FlagArray[userRowLabelIndex] = true;
-                //numberOfResChecked++;
+                //System.out.println("False, now true!");
             }
         else if(user1X2FlagArray[userRowLabelIndex] == true){
             user1X2FlagArray[userRowLabelIndex] = false;
-            //numberOfResChecked--;
+            //System.out.println("True, now false!");
         }
-        
+        //System.out.println("-------------");
     }
     
     
@@ -195,7 +202,7 @@ public class User1X2Listener {
             
         }
         else if (user1X2FlagArray[userRowLabelIndex] == true){
-            
+            //System.out.println("strArrayTypeOfImage: " + strArrayTypeOfImage);
             if(strArrayTypeOfImage == "1"){
                 userRowimageViewArray[userRowLabelIndex].setImage(image1);
                 userRowArray[userRowLabelIndex].setGraphic(userRowimageViewArray[userRowLabelIndex]);
@@ -215,9 +222,16 @@ public class User1X2Listener {
                 //disableIndexes[0] = userRowLabelIndex - 1;
                 //disableIndexes[1] = userRowLabelIndex - 2;
             }
-            else{
-                
+            
+            else if(strArrayTypeOfImage == "blank"){
+                userRowimageViewArray[userRowLabelIndex].setImage(imageBlank);
+                userRowArray[userRowLabelIndex].setGraphic(userRowimageViewArray[userRowLabelIndex]);
             }
+            else{
+                System.out.println("In else...");
+            }
+            
+            //System.out.println("strArrayTypeOfImage: " + strArrayTypeOfImage);
             
             //userRowArray[disableIndexes[0]].setDisable(true);
             //userRowArray[disableIndexes[1]].setDisable(true);
@@ -241,6 +255,54 @@ public class User1X2Listener {
         this.MGlistener.updateEnableCountCButton(this.resultRowListener.get13Flag());
     }
       
+      
+    //resets the MGs and changes the grapics of the MGs
+    public void reset1X2s(){
+        
+        /*
+        for(int p = 0 ; p < user1X2FlagArray.length ; p++){
+            //if(user1X2FlagArray[p] == true){
+                user1X2FlagArray[p] = true;
+                //System.out.println("In true...");
+            //}
+            //user1X2FlagArray[p] = false;
+            userRowLabelIndex = p;
+            strArrayTypeOfImage = "blank";
+            //user1X2LabelFlagSetter();
+            //userRowimageViewArray[p].setImage(imageBlank);
+            //userRowArray[p].setGraphic(userRowimageViewArray[p]); 
+            user1X2LabelFlagSetter();
+            updateLabelImage();
+        }
+        */
+        
+        
+        initiate2Arrays();
+        
+        
+        
+        //updateLabelImage();
+        
+         for(int p = 0 ; p < user1X2FlagArray.length ; p++){
+            /*
+             if(user1X2FlagArray[p] == true){
+                System.out.println("In true...");
+            }*/
+             if (user1X2FlagArray[p] == false){
+              
+            userRowimageViewArray[p].setImage(imageBlank);
+            userRowArray[p].setGraphic(userRowimageViewArray[p]);    
+            
+        }
+         }
+        
+        for(int w = 0 ; w < userRowArray.length ; w++){
+            //userRowimageViewArray[w].setImage(imageBlank);
+            //userRowArray[w].setGraphic(userRowimageViewArray[w]);
+            //userRowArray[w].setDisable(false);
+        }
+        
+    }  
       
     public boolean[] getUser1X2FlagArray(){
         return this.user1X2FlagArray;

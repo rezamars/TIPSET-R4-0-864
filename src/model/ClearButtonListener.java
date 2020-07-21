@@ -27,9 +27,13 @@ public class ClearButtonListener {
     private boolean[] resultFlagArray;
     private TextArea numberOfRightsTextArea;
     private boolean flagOfCorrectSystem;
+    private boolean[] user1X2FlagArray;
+    private String[] strArray;
+    private User1X2Listener user1X2Listener;
     
     
-    public ClearButtonListener(Right right1, MGListener MGlistener1, boolean flag13, ResultRowListener resultRowListener1, Left left1){
+    public ClearButtonListener(Right right1, MGListener MGlistener1, boolean flag13, ResultRowListener resultRowListener1, Left left1, 
+            User1X2Listener user1X2Listener1){
         
         this.right = right1;
         this.clearButton = right.getClearButton();
@@ -40,6 +44,9 @@ public class ClearButtonListener {
         this.resultFlagArray = resultRowListener.getResultFlags();
         this.numberOfRightsTextArea = right.getTextArea();
         this.flagOfCorrectSystem = left1.getFlagOfCorrectSystem();
+        this.user1X2FlagArray = user1X2Listener1.getUser1X2FlagArray();
+        this.strArray = resultRowListener.getStrArray();
+        this.user1X2Listener = user1X2Listener1;
         
     }
     
@@ -50,19 +57,37 @@ public class ClearButtonListener {
         
         clearButton.setOnAction(e -> {
             
-            MGlistener.resetMGs();
-            MGlistener.updateLabelImage();
-            MGlistener.updateEnableCountCButton(result13Flag);
-            
-            for(int x = 0 ; x < mgFlagArray.length ; x++){
-                this.resultFlagArray[x] = false;
-            }
-            
-            resultRowListener.resetChosenResults();
-            numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: \n12 rätt:\n11 rätt:\n10 rätt:");
+            resetAll();
             
         });
         
     }
+    
+    public void resetAll(){
+        
+        MGlistener.resetMGs();
+        MGlistener.updateLabelImage();
+        MGlistener.updateEnableCountCButton(result13Flag);
+            
+        for(int x = 0 ; x < mgFlagArray.length ; x++){
+            this.resultFlagArray[x] = false;
+        }
+
+        resultRowListener.resetChosenResults();
+        numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: \n12 rätt:\n11 rätt:\n10 rätt:");
+            
+        for (int a = 0 ; a < user1X2FlagArray.length ; a++){
+            //user1X2Listener.getUser1X2FlagArray()[a] = false;
+        }
+        
+        for ( int s = 0 ; s < strArray.length ; s++){
+            strArray[s] = "";
+        }
+        
+        this.user1X2Listener.reset1X2s();
+        
+        
+    }
+    
     
 }
