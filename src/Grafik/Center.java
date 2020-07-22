@@ -44,9 +44,10 @@ public class Center extends VBox{
     
     private String[] result13Array = new String[13];
     
+    
     public Center(){
         
-        
+        //settings to the center-object
         this.setPadding(new Insets(10, 10, 10, 100));  
         this.setSpacing(1);
         this.setAlignment(Pos.TOP_LEFT);
@@ -112,7 +113,6 @@ public class Center extends VBox{
             
             imageViewArray[w] = new ImageView();
             
-            
             imageViewArray[w] = new ImageView(imageBlank);
             
             imageViewArray[w].setFitHeight(height/25);
@@ -123,7 +123,7 @@ public class Center extends VBox{
             
         }
         
-        //filling resultarray with zero text
+        //filling resultarray with blank-text
         for(int p = 0 ; p < result13Array.length ; p++){
             result13Array[p] = "";
         }
@@ -171,12 +171,10 @@ public class Center extends VBox{
     public void loadLabelImages(){
         
         try {
-            
             imageBlank = new Image(imageBlankPath);
         }
         catch(Exception e) {
             System.out.println("Gick ej att ladda bild!");
-            //System.exit(0);
             return;
         }
         

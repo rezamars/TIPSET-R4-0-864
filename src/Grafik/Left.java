@@ -58,6 +58,7 @@ public class Left extends VBox{
     
     public Left(){
         
+        //settings to the left-object
         this.setPadding(new Insets(10, 10, 10, 25));  
         this.setSpacing(1);
         this.setAlignment(Pos.TOP_CENTER);
@@ -65,6 +66,7 @@ public class Left extends VBox{
         Font headingFont ;
         headingFont = Font.font("Arial", FontWeight.BOLD, 20);
         
+        //setting font and colour of the labels and adding the label to the screen
         headingLabel1.setFont(headingFont);
         headingLabel1.setTextFill(Color.BLUE);
         this.getChildren().add(headingLabel1);
@@ -113,7 +115,7 @@ public class Left extends VBox{
             rowNumberlabelArray[x].setAlignment(Pos.CENTER);
         }
         
-        //loading images for result-part
+        //loading images for the MG-clickable label
         try {
             
             MGimage1 = new Image(MGimage1Path);
@@ -121,7 +123,6 @@ public class Left extends VBox{
         }
         catch(Exception e) {
             System.out.println("Gick ej att ladda MG-bild!");
-            //System.exit(0);
             return;
         }
         
@@ -155,7 +156,6 @@ public class Left extends VBox{
         for(int w = 0 ; w < userRowimageViewArray.length ; w++){
             
             userRowimageViewArray[w] = new ImageView();
-            
             
             userRowimageViewArray[w] = new ImageView(imageBlank);
             
@@ -216,6 +216,7 @@ public class Left extends VBox{
         spaceHbox2.setPadding(new Insets(10, 10, 10, 100));
         this.getChildren().add(spaceHbox2);
         
+        //set properties of the statuslabel, and adding it to the screen
         Font statusFont ;
         statusFont = Font.font("Arial", FontWeight.BOLD, 20);
         statusLabel.setFont(statusFont);

@@ -49,6 +49,7 @@ public class MGListener    {
     
     public MGListener(Label[] MGA, Left left1, Center center1, Right right1, boolean flag13, CombinedSystemChecker combinedSystemChecker1){
         
+        //fill the MGFlagarray with false (so that it don't contains null
         for (int a = 0 ; a < mgFlagArray.length ; a++){
             mgFlagArray[a] = false;
         }
@@ -78,7 +79,6 @@ public class MGListener    {
                 
 	        MGArray[x].setOnMouseClicked(event -> {
                     
-                    
                     for (int index = 0 ; index < MGArray.length ; index++){
                         if(event.getSource()== MGArray[index]){
                         MGIndex = index;
@@ -92,8 +92,6 @@ public class MGListener    {
                     updateLabelImage();
                     this.combinedSystemChecker.checkIfUserSystemIsComplete();
                     updateEnableCountCButton(this.result13Flag);
-                    
-                    //System.out.println("In MGListener, NumberOfMGs: " + numberOfMGs);
                 });
         }
     }       
@@ -102,13 +100,11 @@ public class MGListener    {
     public void loadLabelImage(){
         
         try {
-            
             MGimage1 = new Image(MGimage1Path);
             MGimage2 = new Image(MGimage2Path);
         }
         catch(Exception e) {
             System.out.println("Gick ej att ladda MG-bild!");
-            //System.exit(0);
             return;
         }
         
@@ -129,11 +125,12 @@ public class MGListener    {
     //changing label images, counting number of MGs chosen
     public void updateLabelImage(){
         
+        //if this is a valid MGIndex
         if(MGIndex != -1){
             
             if (mgFlagArray[MGIndex] == false){
                 
-               
+            //disabling to mark more than 6 MG:s    
             if (numberOfMGs == 6){
                 for (int y = 0; y < MGArray.length ; y++){
                     if (mgFlagArray[y] != true){
@@ -145,7 +142,6 @@ public class MGListener    {
                 }
             }
             
-                
             MGimageViewArray[MGIndex].setImage(MGimage1);
             MGArray[MGIndex].setGraphic(MGimageViewArray[MGIndex]);
                 
@@ -169,7 +165,7 @@ public class MGListener    {
             
             
         if (numberOfMGs > 5){
-            System.out.println("6+++++ " + numberOfMGs );
+            
             for (int y = 0; y < MGArray.length ; y++){
                 if (mgFlagArray[y] != true){
                     MGArray[y].setDisable(true);
@@ -182,6 +178,8 @@ public class MGListener    {
         
          
         int iter = 0;
+        
+        //filling the chosen MG-indexes in the array
         for (int y = 0; y < mgFlagArray.length ; y++){
                 if (mgFlagArray[y] == true){
                     chosenMGIndexes[iter] = y;
@@ -189,6 +187,8 @@ public class MGListener    {
                 }
             }
         
+        
+        //setting the flag that indicates max-number of 6 MG:s
         if (numberOfMGs == 6){
             
             flagOf6MGs = true;
@@ -197,21 +197,14 @@ public class MGListener    {
         else{
             flagOf6MGs = false;
         }
-        //System.out.println("MGs = " + numberOfMGs);
         
     }
 
-    //enable and disable the count-button depending on numbers of MGs and result-input
+    //enable and disable the count-button depending on numbers of MGs, 
+    //correct system input by the user and result-input
     public void updateEnableCountCButton(boolean flag13){
         
         this.result13Flag = flag13;
-        
-        /*
-        System.out.println("FlagOfCorrectSystem: " + this.left.getFlagOfCorrectSystem());
-        System.out.println("FlagOf6MGs: " + flagOf6MGs);
-        System.out.println("result13Flag: " + result13Flag);
-        System.out.println("---------------");
-        */
         
         if ((flagOf6MGs == true) && (this.result13Flag == true) && (this.left.getFlagOfCorrectSystem() == true)){
             right.getCountButton().setDisable(false);
@@ -228,7 +221,7 @@ public class MGListener    {
     
     
  
-    //resets the MGs and changes the grapics of the MGs
+    //resets the MGs, resets the chosen indexes, sets number of MG:s to zero and changes the grapics of the MGs, 
     public void resetMGs(){
         
         for(int p = 0 ; p < mgFlagArray.length ; p++){

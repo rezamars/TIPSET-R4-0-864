@@ -26,7 +26,8 @@ import model.User1X2Listener;
  *
  * @author Reza
  */
-//this class is controller of the program, it contains instance variables and the main-method
+//this class is controller of the program, it contains instance variables of
+//the view-parts and various listeners and the main-method
 public class Controller extends Application {
     
     
@@ -68,10 +69,9 @@ public class Controller extends Application {
         this.userRowArray = left.getUserRowArray();
         this.result1X2Array = center.getResultArray();
         
+        //creating new instances of various objects
         combinedSystemChecker = new CombinedSystemChecker();
         
-        
-        //creating new instances of various objects
         MGlistener = new MGListener(MGArray, left, center, right, flag13, combinedSystemChecker);
         MGlistener.addMGLabelListener();
         
@@ -94,6 +94,7 @@ public class Controller extends Application {
         
         resultCounter.setUser1X2Listener(user1X2Listener);
         
+        //creating new instance of the view
         View v = new View(primaryStage, top, left, center, right);
         
         

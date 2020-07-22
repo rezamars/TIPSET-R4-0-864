@@ -14,7 +14,7 @@ import javafx.scene.control.TextArea;
  *
  * @author Reza
  */
-//handles resetting the Mgs and result and the textarea
+//handles resetting the Mg:s, resetting the user-system and the result and the textarea
 public class ClearButtonListener {
     
     private Right right;
@@ -51,7 +51,7 @@ public class ClearButtonListener {
     }
     
     //add listener to clear-button
-    //at click: resetting the MCGs,flags, the results and the textarea
+    //at click: resetting the MGs,flags, the user-system, the results and the textarea
     //and updating the grafics
     public void addClearButtonListener(){
         
@@ -75,10 +75,7 @@ public class ClearButtonListener {
 
         resultRowListener.resetChosenResults();
         numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: \n12 rätt:\n11 rätt:\n10 rätt:\nÖvrigt(högst):");
-            
-        for (int a = 0 ; a < user1X2FlagArray.length ; a++){
-            //user1X2Listener.getUser1X2FlagArray()[a] = false;
-        }
+        
         
         for ( int s = 0 ; s < strArray.length ; s++){
             strArray[s] = "";

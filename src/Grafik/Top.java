@@ -37,23 +37,23 @@ public class Top extends HBox{
         
         //load image
         try {
-            
             image = new Image(imagePath);
         }
         catch(Exception e) {
             System.out.println("Gick ej att ladda tipset-bild!");
-            //System.exit(0);
             return;
         }
         
         //set the image to the grafic
         tipsLabel.setGraphic(new ImageView(image));
         
+        //setting font of the systemlabel
         Font font ;
         font = Font.font("Arial", FontWeight.BOLD, 40);
         systemLabel.setFont(font);
         systemLabel.setTextFill(Color.BLUE);
 
+        //add the labels to the graphics
         this.getChildren().add(tipsLabel);
         this.getChildren().add(systemLabel);
 

@@ -13,6 +13,8 @@ import javafx.scene.paint.Color;
  *
  * @author Reza
  */
+
+//this class contains listener that checks if the users system-input is correct and complete
 public class CombinedSystemChecker {
     
     private int numberOfMGs;
@@ -32,10 +34,9 @@ public class CombinedSystemChecker {
     public CombinedSystemChecker(){
         
         
-        
     }
     
-    
+    //getting references to listeners and other objects
     public void get2Listeners(MGListener MGlistener1, User1X2Listener user1X2Listener1, Left left1, Boolean flagOf13, 
             ResultRowListener resultRowListener1){
         
@@ -52,33 +53,25 @@ public class CombinedSystemChecker {
         
     }
     
-    
+    //checks if the users system contains a correct system
+    //that is correct number of MG:s, correct R3, M3, M2, ones and that all matches are clicked
+    //it counts every part and sets flagOfCorrect-system flag
     public void checkIfUserSystemIsComplete(){
         
+        //variables of all parts of the users system
         int numberOfRThreeWays = 0;
         int numberOfRTwoWays = 0;
         int numberOfMThreeWays = 0;
         int numberOfMTwoWays = 0;
         
-        
+        //gets number of MG:s clicked by the user
         numberOfMGs = MGlistener.getNumberOfMGs();
-        //numberOfMGs = this.numberOfMGs;
-        //this.chosenMGIndexes = left.getChosenMGIndexes();
-        
-        //System.out.println("in check...MGs= " + numberOfMGs);
-        
-        //if (numberOfMGs == 6 ){
-            for (int i = 0 ; i < 6 ; i++){
-                 //System.out.println(chosenMGIndexes[i]);
-            }
-        //}
         
         int rowIndex = 0;
         int MGIndexIterator = 0;
         
+        //counts MG3, MG2, R3 and ones
         for (int loopIndex = 0 ; loopIndex < 39 ; loopIndex+=3){
-            
-            //System.out.println("In loop 39, MGIndexIterator: " + MGIndexIterator);
             
             if (MGIndexIterator < 6){
                 
@@ -133,18 +126,19 @@ public class CombinedSystemChecker {
             }
             
             
-            
             rowIndex++;
         }
         
         boolean[] flagOf13Marked = new boolean[13];
         
+        //initiating 
         for(int x = 0 ; x < 13 ; x++){
             flagOf13Marked[x] = false;
         }
                 
         int flagOf13MarkedIndex = 0;
         
+        //finding which matches are filled by the user
         for (int loopIndex = 0 ; loopIndex < 39 ; loopIndex+=3){
             
             if(((user1X2FlagArray[loopIndex] == true) || (user1X2FlagArray[loopIndex+1] == true) || 
@@ -157,12 +151,14 @@ public class CombinedSystemChecker {
         
         int numberOfGamesMarked = 0;
         
+        //counting how many matches are clicked
         for(int y = 0 ; y < 13 ; y++){
             if(flagOf13Marked[y] == true){
                 numberOfGamesMarked++;
             }
         }
         
+        //checking if the users system are correct and complete filled, printing info to the user in bottom-label
         if ((numberOfRThreeWays == 4) && (numberOfRTwoWays == 0) && (numberOfMThreeWays == 1) && (numberOfMTwoWays == 5) &&
                 (numberOfGamesMarked == 13)){
             statusLabel.setText("Info: Ditt system är nu korrekt ifylld!");
@@ -177,25 +173,9 @@ public class CombinedSystemChecker {
             this.left.setFlagOfCorrectSystem(flagOfCorrectSystem);
         }
         
-        /*
-        if (flag13 == true && flagOfCorrectSystem == true){
-            this.MGlistener.updateEnableCountCButton(flag13);
-        }
-        else{
-            
-        }
-        */
-        
         this.MGlistener.updateEnableCountCButton(this.resultRowListener.get13Flag());
         
-        /*
-        System.out.println("---------------");
-        System.out.println("NumberofGamesMarked: " + numberOfGamesMarked);
-        System.out.println("R3: " + numberOfRThreeWays);
-        System.out.println("R2: " + numberOfRTwoWays);
-        System.out.println("M3: " + numberOfMThreeWays);
-        System.out.println("M2: " + numberOfMTwoWays);
-        */
+        
     }
     
 }

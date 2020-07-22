@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
  *
  * @author Reza
  */
+
+//handles the users system-input, contains listener to the user1X2-system labels
 public class User1X2Listener {
     
     private Image image1;
@@ -64,6 +66,8 @@ public class User1X2Listener {
         
     }
     
+    //initiates and resets the 2 arrays that contains user1X2-flags and string-array of the system
+    //that the user has clicked and chosen
     public void initiate2Arrays(){
         
         for (int a = 0 ; a < user1X2FlagArray.length ; a++){
@@ -77,7 +81,7 @@ public class User1X2Listener {
     }
     
     
-    //loads the images for the result-input
+    //loads the images for the users system1X2-input
     public void loadLabelImages(){
         
         try {
@@ -89,21 +93,20 @@ public class User1X2Listener {
         }
         catch(Exception e) {
             System.out.println("Gick ej att ladda bild!");
-            //System.exit(0);
             return;
         }
         
     }
     
-    //adds listener for the result input of the user
-    //then, calls the flagsetter method, 
+    //adds listener for the users system-input of the 1X2,
+    //calls the flagsetter method, 
     //and updates the images for clicked, depending on 1X2
     public void addUser1X2LabelListener(){
 	        
         for(int x = 0 ; x<userRowArray.length ; x++){
                 
 	        userRowArray[x].setOnMouseClicked(event -> {
-                    //System.out.println("Click!");
+                    
                     for(int loopIndex = 0 ; loopIndex <userRowArray.length ; loopIndex+=3){
                         
                         if(event.getSource() == userRowArray[loopIndex]){
@@ -115,8 +118,6 @@ public class User1X2Listener {
                                 strArrayTypeOfImage = "";
                             }
                             strArray[userRowLabelIndex] = strArrayTypeOfImage;
-                            //strArray[userRowLabelIndex + 1] = "";
-                            //strArray[userRowLabelIndex + 2] = "";
                         }
                         else if(event.getSource() == userRowArray[loopIndex+1]){
                             userRowLabelIndex = loopIndex + 1 ;
@@ -127,8 +128,6 @@ public class User1X2Listener {
                                 strArrayTypeOfImage = "";
                             }
                             strArray[userRowLabelIndex] = strArrayTypeOfImage;
-                            //strArray[userRowLabelIndex - 1] = "";
-                            //strArray[userRowLabelIndex + 1] = "";
                         }
                         else if(event.getSource() == userRowArray[loopIndex+2]){
                             userRowLabelIndex = loopIndex + 2 ;
@@ -139,8 +138,6 @@ public class User1X2Listener {
                                 strArrayTypeOfImage = "";
                             }
                             strArray[userRowLabelIndex] = strArrayTypeOfImage;
-                            //strArray[userRowLabelIndex - 1] = "";
-                            //strArray[userRowLabelIndex - 2] = "";
                         }
                     }
                     
@@ -153,7 +150,7 @@ public class User1X2Listener {
         }
     }      
     
-    //sets the flags for the result-part, specifying which of the results the user has chosen and not chosen
+    //sets the flags for the users 1X2system-input
     public void user1X2LabelFlagSetter(){
         
         if (user1X2FlagArray[userRowLabelIndex] == false){
@@ -162,65 +159,36 @@ public class User1X2Listener {
             }
         else if(user1X2FlagArray[userRowLabelIndex] == true){
             user1X2FlagArray[userRowLabelIndex] = false;
-            //System.out.println("True, now false!");
         }
-        //System.out.println("-------------");
+        
     }
     
     
-    //changing the result-grafics depending on chosen and unchosen 1,X,2
+    //changing the label-image of the users 1X2system-input
       public void updateLabelImage(){
         
         if (user1X2FlagArray[userRowLabelIndex] == false){
-              
-            /*
-            if(strArrayTypeOfImage == "1"){
-                disableIndexes[0] = userRowLabelIndex + 1;
-                disableIndexes[1] = userRowLabelIndex + 2;
-            }
-            else if(strArrayTypeOfImage == "X"){
-                disableIndexes[0] = userRowLabelIndex - 1;
-                disableIndexes[1] = userRowLabelIndex + 1;
-            }
-            else if(strArrayTypeOfImage == "2"){
-                disableIndexes[0] = userRowLabelIndex - 1;
-                disableIndexes[1] = userRowLabelIndex - 2;
-            }
-            else{
-                
-            }
-            */
-            
+             
             userRowimageViewArray[userRowLabelIndex].setImage(imageBlank);
             userRowArray[userRowLabelIndex].setGraphic(userRowimageViewArray[userRowLabelIndex]);    
             
-            //userRowArray[disableIndexes[0]].setDisable(false);
-            //userRowArray[disableIndexes[1]].setDisable(false);
-            
-            //checkedResults--;
-            //this.result13Flag  = false;
-            
         }
         else if (user1X2FlagArray[userRowLabelIndex] == true){
-            //System.out.println("strArrayTypeOfImage: " + strArrayTypeOfImage);
+            
             if(strArrayTypeOfImage == "1"){
                 userRowimageViewArray[userRowLabelIndex].setImage(image1);
                 userRowArray[userRowLabelIndex].setGraphic(userRowimageViewArray[userRowLabelIndex]);
-                //disableIndexes[0] = userRowLabelIndex + 1;
-                //disableIndexes[1] = userRowLabelIndex + 2;
                 
             }
             else if(strArrayTypeOfImage == "X"){
                 userRowimageViewArray[userRowLabelIndex].setImage(imageX);
                 userRowArray[userRowLabelIndex].setGraphic(userRowimageViewArray[userRowLabelIndex]);
-                //disableIndexes[0] = userRowLabelIndex - 1;
-                //disableIndexes[1] = userRowLabelIndex + 1;
+                
             }
             else if(strArrayTypeOfImage == "2"){
                 userRowimageViewArray[userRowLabelIndex].setImage(image2);
                 userRowArray[userRowLabelIndex].setGraphic(userRowimageViewArray[userRowLabelIndex]);
-                //disableIndexes[0] = userRowLabelIndex - 1;
-                //disableIndexes[1] = userRowLabelIndex - 2;
+                
             }
             
             else if(strArrayTypeOfImage == "blank"){
@@ -228,78 +196,29 @@ public class User1X2Listener {
                 userRowArray[userRowLabelIndex].setGraphic(userRowimageViewArray[userRowLabelIndex]);
             }
             else{
-                System.out.println("In else...");
-            }
-            
-            //System.out.println("strArrayTypeOfImage: " + strArrayTypeOfImage);
-            
-            //userRowArray[disableIndexes[0]].setDisable(true);
-            //userRowArray[disableIndexes[1]].setDisable(true);
-            //checkedResults++;   
-            
-            /*
-            //when the user checks 13 results the 13Flag sets to true 
-            //whihch makes it possible to click the count-button
-            if(checkedResults == 13){
-                
-                result13Flag = true;
-                
-                countRowNumber();
-            }
-            else{
                 
             }
-            */
+            
         }
             
         this.MGlistener.updateEnableCountCButton(this.resultRowListener.get13Flag());
     }
       
       
-    //resets the MGs and changes the grapics of the MGs
+    //resets the 1X2-flagArray, resets the string-array that contains users system,
+    //resets the users 1X2-system and changes the grapics of the 1X2-labels to blank
     public void reset1X2s(){
-        
-        /*
-        for(int p = 0 ; p < user1X2FlagArray.length ; p++){
-            //if(user1X2FlagArray[p] == true){
-                user1X2FlagArray[p] = true;
-                //System.out.println("In true...");
-            //}
-            //user1X2FlagArray[p] = false;
-            userRowLabelIndex = p;
-            strArrayTypeOfImage = "blank";
-            //user1X2LabelFlagSetter();
-            //userRowimageViewArray[p].setImage(imageBlank);
-            //userRowArray[p].setGraphic(userRowimageViewArray[p]); 
-            user1X2LabelFlagSetter();
-            updateLabelImage();
-        }
-        */
-        
         
         initiate2Arrays();
         
-        
-        
-        //updateLabelImage();
-        
          for(int p = 0 ; p < user1X2FlagArray.length ; p++){
-            /*
-             if(user1X2FlagArray[p] == true){
-                System.out.println("In true...");
-            }*/
-             if (user1X2FlagArray[p] == false){
+            
+            if (user1X2FlagArray[p] == false){
               
             userRowimageViewArray[p].setImage(imageBlank);
             userRowArray[p].setGraphic(userRowimageViewArray[p]);    
             
-        }
-         }
-        
-        for(int w = 0 ; w < userRowArray.length ; w++){
-            //userRowimageViewArray[w].setImage(imageBlank);
-            //userRowArray[w].setGraphic(userRowimageViewArray[w]);
-            //userRowArray[w].setDisable(false);
+            }
         }
         
     }  

@@ -15,6 +15,7 @@ import java.util.Scanner;
  *
  * @author Reza
  */
+
 //handles reading default tables from textfile
 public class ReadFile {
     

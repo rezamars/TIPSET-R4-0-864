@@ -14,7 +14,7 @@ import javafx.scene.control.TextArea;
  *
  * @author Reza
  */
-//handles counting the number of rights, depending on MGs chosen, result
+//handles counting the number of rights, depending on MGs chosen, user1X2-system and results
 public class ResultCounter {
     
     private int[] chosenMGIndexes;
@@ -37,13 +37,6 @@ public class ResultCounter {
     private int amountOf10 = 0;
     private int amountOfOther = 0;
     
-    /*
-    int numberOfRThreeWays = 0;
-    int numberOfRTwoWays = 0;
-    int numberOfMThreeWays = 0;
-    int numberOfMTwoWays = 0;
-    */
-    
     private String[] fourResultsMarks = new String[4];
     private TextArea numberOfRightsTextArea;
     
@@ -60,10 +53,12 @@ public class ResultCounter {
         
     }
     
+    //reference to 1X2Listener
     public void setUser1X2Listener(User1X2Listener user1X2Listener1){
         this.strArray = user1X2Listener1.getStrArray();
     }
     
+    //initiating the indexes-arrays
     public void initiateIntArrays(){
         
         for(int q = 0 ; q < indexesOfRThrees.length ; q++){
@@ -80,28 +75,18 @@ public class ResultCounter {
     public void startResultCounter(){
         
         specifyAndSaveIndexesOf3_2_1();
-        //specify8unMGIndexes();
         
     }
     
+    //filling the indexes of the various arrays that holds the indexes of the indexes-arrays
     public void specifyAndSaveIndexesOf3_2_1(){
-        
-        for(int x = 0 ; x < 39 ; x+=3){
-            //System.out.println(strArray[x]+ ", " + strArray[x+1] + ", " + strArray[x+2] + ",");
-        }
-        
-        for(int i = 0 ; i < 6 ; i++){
-            //System.out.println(chosenMGIndexes[i]);
-        }
-        
+       
         int MGIndexIterator = 0;
         int R3iterator = 0;
         int M2iterator = 0;
         int Onesiterator = 0;
         
         int rowIndex = 0;
-        
-        //for(int i = 0 ; i < 13 ; i++){
             
             for(int x = 0 ; x < 39 ; x+=3){
                 
@@ -140,9 +125,7 @@ public class ResultCounter {
                         Onesiterator++;
                     }
                     else{
-                        //indexesOfOnes[Onesiterator] = rowIndex;
-                        //Onesiterator++;
-                        System.out.println("in else... ");
+                        
                     }
                     
                 }
@@ -164,9 +147,7 @@ public class ResultCounter {
                         Onesiterator++;
                     }
                     else{
-                        //indexesOfOnes[Onesiterator] = rowIndex;
-                        //Onesiterator++;
-                        System.out.println("in else... ");
+                        
                     }
                 
                 }
@@ -175,63 +156,13 @@ public class ResultCounter {
                 rowIndex++;
             }
             
-        //}
-        
-        /*
-        System.out.println("indexOfMThree: " + indexOfMThree);
-        
-        for(int u = 0 ; u < indexesOfRThrees.length ; u++){
-            System.out.println("indexesOfRThrees: " + indexesOfRThrees[u]);
-        }
-        for(int p = 0 ; p < indexesOfMTwos.length ; p++){
-            System.out.println("indexesOfMTwos: " + indexesOfMTwos[p]);
-        }
-        for(int a = 0 ; a < indexesOfOnes.length ; a++){
-            System.out.println("indexesOfOnes: " + indexesOfOnes[a]);
-        }
-        */
-        
+       
         countTheRights();
         
     }
     
-    /*
-    //fills the 8unmarkedMGs-array with indexes that the user has chosen as not MG
-    public void specify8unMGIndexes(){
-        
-        for (int x = 0 ; x < the8unMGmarkedIndexes.length ; x++){
-            the8unMGmarkedIndexes[x] = -1;
-        }
-        
-        int indexOf5 = 0;
-        int indexOf8 = 0;
-        
-        
-            for(int i = 0 ; i < 13 ; i++){
-                
-                if(indexOf5 < 5){
-                    
-                    if(chosenMGIndexes[indexOf5] == i){
-                        indexOf5++;
-                    }
-                    else{
-                        the8unMGmarkedIndexes[indexOf8] = i;
-                        indexOf8++;
-                    }
-                }
-                else{
-                    System.out.println("in else, i= " + i);
-                        the8unMGmarkedIndexes[indexOf8] = i;
-                        indexOf8++;
-                }
-                
-            }
-        
-        countTheRights();
-    }
-    */
     
-    //compares the 8 rows of the user with the default tables for R8-0-27 read from file
+    //counts the rights comparing users 1X2-system with the results
     private void countTheRights(){
         
         amountOf13 = 0;
@@ -250,6 +181,7 @@ public class ResultCounter {
         
         for(int i = 0 ; i < 9 ; i++){
             
+            //checks the 4 R3-marked matches by comparing users four R3 to the R4-0-9 tables
             numberOfRight = 0;
             for(int y = 0 ; y < 4 ; y++){
                 if(R4_0_9_Tables[i][y].equalsIgnoreCase(fourResultsMarks[y])){
@@ -261,6 +193,7 @@ public class ResultCounter {
             
             int strArrayIterator1 = 0;
             
+            //counts how many rights the user has in the M2:s
             for (int c = 0 ; c < indexesOfMTwos.length ; c++){
                 
                 switch (indexesOfMTwos[c]) {
@@ -309,14 +242,13 @@ public class ResultCounter {
                 
                 
                 if(result13Array[indexesOfMTwos[c]].equalsIgnoreCase("1")){
-                    //System.out.println("result13Array: " + result13Array[indexesOfMTwos[c]]);
-                    //System.out.println("strArray: " + result13Array[indexesOfMTwos[c]]);
+                    
                     
                     if(((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1])) && 
                             ((strArray[strArrayIterator1+1]).equalsIgnoreCase("X"))) || 
                         ((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1])) && 
                             ((strArray[strArrayIterator1+2]).equalsIgnoreCase("2")))){
-                        //System.out.println("in first M2 if...");
+                        
                         numberOfRight++;
                     }
                 }
@@ -325,7 +257,7 @@ public class ResultCounter {
                             ((strArray[strArrayIterator1]).equalsIgnoreCase("1"))) || 
                         ((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1+1])) && 
                             ((strArray[strArrayIterator1+2]).equalsIgnoreCase("2")))){
-                        //System.out.println("in first M2 if...");
+                        
                         numberOfRight++;
                     }
                 }
@@ -334,39 +266,18 @@ public class ResultCounter {
                             ((strArray[strArrayIterator1]).equalsIgnoreCase("1"))) || 
                         ((result13Array[indexesOfMTwos[c]].equalsIgnoreCase(strArray[strArrayIterator1+2])) && 
                             ((strArray[strArrayIterator1+1]).equalsIgnoreCase("X")))){
-                        //System.out.println("in first M2 if...");
+                        
                         numberOfRight++;
                     }
                 }
                 
             }
             
-            /*
-            for (int l = 0 ; l < indexesOfMTwos.length ; l++){
-                
-                for(int x = 0 ; x < 39 ; x+=3){
-                     
-                     if(result13Array[indexesOfMTwos[l]].equalsIgnoreCase(strArray[x])){
-                         numberOfRight++;
-                         break;
-                     }
-                     else if (result13Array[indexesOfMTwos[l]].equalsIgnoreCase(strArray[x+1])){
-                         numberOfRight++;
-                         break;
-                     }
-                     else if (result13Array[indexesOfMTwos[l]].equalsIgnoreCase(strArray[x+2])){
-                         numberOfRight++;
-                         break;
-                     }
-                     
-                 }
-                
-            }
-            */
             
             
             int strArrayIterator2 = 0;
            
+            //counts how many rights the user has in the ones
             for (int k = 0 ; k < indexesOfOnes.length ; k++){
                 
                 switch (indexesOfOnes[k]) {
@@ -432,38 +343,9 @@ public class ResultCounter {
                 
             }
                 
-                /*
-                for(int x = 0 ; x < 39 ; x+=3){
-                    
-                     if(result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[x])){
-                         numberOfRight++;
-                         checkInt++;
-                         break;
-                     }
-                     else if (result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[x+1])){
-                         numberOfRight++;
-                         checkInt++;
-                         break;
-                     }
-                     else if (result13Array[indexesOfOnes[k]].equalsIgnoreCase(strArray[x+2])){
-                         numberOfRight++;
-                         checkInt++;
-                         break;
-                     }
-                     
-                 }
-                */
-           
-            
-            
-            
-            
-            
+             
             //Adds 1 right because of the 1X2-threeM
             numberOfRight++;
-            
-            //adds the 5 MGs that are 1X2-marked from the user
-            //numberOfRight +=5;
             
             
             //adds number of rights to the 4 levels of won
@@ -480,25 +362,13 @@ public class ResultCounter {
                 amountOf10++;
             }
             
-            //System.out.println("numberOfRights: " + numberOfRight);
+            //if the number of rights is below 10, fill the amountOfOther with amount of rights
             if((numberOfRight < 10) && (numberOfRight > amountOfOther)){
                 amountOfOther = numberOfRight;
             }
             
         }
         
-        
-        
-        //System.out.println("--------------------------");
-        
-        for (int l = 0 ; l < indexesOfMTwos.length ; l++){
-            //System.out.println("indexesOfMTwos[l]]: " + indexesOfMTwos[l]);
-        }
-        
-        for(int p = 0 ; p < result13Array.length ; p++){
-            //System.out.println("result13Array: " + result13Array[p]);
-        }
-         
         
         setRightsInTextArea();
         
@@ -507,10 +377,12 @@ public class ResultCounter {
     //fills the ammount of rights in textarea
     public void setRightsInTextArea(){
         
+        //if amount of rights is 10 or more
         if((amountOf10 > 0) || (amountOf11 > 0) || (amountOf12 > 0) || (amountOf13 > 0)){
             numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: " + amountOf13 + "\n12 rätt: " + amountOf12 + 
                 "\n11 rätt: " + amountOf11 + "\n10 rätt: " + amountOf10 + "\nÖvrigt(högst):");
         }
+        //if the amount of rights is below 10
         else{
             numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: " + amountOf13 + "\n12 rätt: " + amountOf12 + 
                 "\n11 rätt: " + amountOf11 + "\n10 rätt: " + amountOf10 + "\nÖvrigt(högst): " + amountOfOther + " rätt");

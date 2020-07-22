@@ -61,16 +61,18 @@ public class ResultRowListener {
         this.result13Flag = flag13;
         this.flagOfCorrectSystem = left1.getFlagOfCorrectSystem();
         
-        
+        //initiating the results flag-array with false so that it's not null
         for (int a = 0 ; a < resultFlagArray.length ; a++){
             resultFlagArray[a] = false;
         }
         
         loadLabelImages();
         
+        //init the int-array with unvalid number
         disableIndexes[0] = -1;
         disableIndexes[1] = -1;
         
+        //init the strArray with blank
         for ( int s = 0 ; s < strArray.length ; s++){
             strArray[s] = "";
         }
@@ -123,7 +125,6 @@ public class ResultRowListener {
     public void loadLabelImages(){
         
         try {
-            
             image1 = new Image(image1Path);
             imageX = new Image(imageXPath);
             image2 = new Image(image2Path);
@@ -131,7 +132,6 @@ public class ResultRowListener {
         }
         catch(Exception e) {
             System.out.println("Gick ej att ladda bild!");
-            //System.exit(0);
             return;
         }
         
@@ -176,6 +176,7 @@ public class ResultRowListener {
             imageViewArray[resultLabellIndex].setImage(imageBlank);
             result1X2Array[resultLabellIndex].setGraphic(imageViewArray[resultLabellIndex]);    
             
+            //disabling the marks besides the besides the label that the user has chosen
             result1X2Array[disableIndexes[0]].setDisable(false);
             result1X2Array[disableIndexes[1]].setDisable(false);
             

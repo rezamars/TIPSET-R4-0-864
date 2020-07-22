@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
  * @author Reza
  */
 //takes care of the functionality that handles when and how to count the results
-//depending of which MGs and the result that the user inputs
+//depending of which MGs, what 1X2-system and the result that the user inputs
 public class CountButtonListener {
     
     private Right right;
