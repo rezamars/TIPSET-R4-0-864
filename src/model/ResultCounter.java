@@ -35,6 +35,7 @@ public class ResultCounter {
     private int amountOf12 = 0;
     private int amountOf11 = 0;
     private int amountOf10 = 0;
+    private int amountOfOther = 0;
     
     /*
     int numberOfRThreeWays = 0;
@@ -237,7 +238,7 @@ public class ResultCounter {
         amountOf12 = 0;
         amountOf11 = 0;
         amountOf10 = 0;
-        
+        amountOfOther = 0;
         
         for(int x = 0 ; x < fourResultsMarks.length ; x++){
             
@@ -479,11 +480,16 @@ public class ResultCounter {
                 amountOf10++;
             }
             
-            System.out.println("numberOfRights: " + numberOfRight);
+            //System.out.println("numberOfRights: " + numberOfRight);
+            if((numberOfRight < 10) && (numberOfRight > amountOfOther)){
+                amountOfOther = numberOfRight;
+            }
             
         }
         
-        System.out.println("--------------------------");
+        
+        
+        //System.out.println("--------------------------");
         
         for (int l = 0 ; l < indexesOfMTwos.length ; l++){
             //System.out.println("indexesOfMTwos[l]]: " + indexesOfMTwos[l]);
@@ -501,8 +507,15 @@ public class ResultCounter {
     //fills the ammount of rights in textarea
     public void setRightsInTextArea(){
         
-        numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: " + amountOf13 + "\n12 rätt: " + amountOf12 + 
-                "\n11 rätt: " + amountOf11 + "\n10 rätt: " + amountOf10);
+        if((amountOf10 > 0) || (amountOf11 > 0) || (amountOf12 > 0) || (amountOf13 > 0)){
+            numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: " + amountOf13 + "\n12 rätt: " + amountOf12 + 
+                "\n11 rätt: " + amountOf11 + "\n10 rätt: " + amountOf10 + "\nÖvrigt(högst):");
+        }
+        else{
+            numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: " + amountOf13 + "\n12 rätt: " + amountOf12 + 
+                "\n11 rätt: " + amountOf11 + "\n10 rätt: " + amountOf10 + "\nÖvrigt(högst): " + amountOfOther + " rätt");
+        }
+        
         
     }
     

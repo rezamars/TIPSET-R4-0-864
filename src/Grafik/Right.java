@@ -66,7 +66,7 @@ public class Right extends VBox{
         
         spaceHbox2.setPadding(new Insets(10, 10, 10, (width/8)));
         
-        numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: \n12 rätt:\n11 rätt:\n10 rätt:");
+        numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: \n12 rätt:\n11 rätt:\n10 rätt:\nÖvrigt(högst):");
         numberOfRightsTextArea.setWrapText(true);
         
         //setting background of TextArea
@@ -77,7 +77,7 @@ public class Right extends VBox{
         //setting properties of textarea
         numberOfRightsTextArea.setStyle("-fx-text-fill: red; -fx-border-color: black;");
         numberOfRightsTextArea.setPrefColumnCount(1);
-        numberOfRightsTextArea.setPrefRowCount(5);
+        numberOfRightsTextArea.setPrefRowCount(6);
         numberOfRightsTextArea.setEditable(false);
         Font textAreaFont ;
         textAreaFont = Font.font("", FontWeight.BOLD, 15);
